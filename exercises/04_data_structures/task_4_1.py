@@ -16,3 +16,13 @@
 """
 
 nat = "ip nat inside source list ACL interface FastEthernet0/1 overload"
+
+nat2 = "ip nat inside source list ACL interface"
+
+nat3 = nat[nat.find('Fast')::]
+
+nat3 = nat3.replace('Fast', 'Gigabit')
+
+nat = nat2 + ' ' + nat3
+
+print(nat)
