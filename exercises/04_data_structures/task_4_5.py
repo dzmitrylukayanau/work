@@ -22,3 +22,29 @@
 
 command1 = "switchport trunk allowed vlan 1,2,3,5,8"
 command2 = "switchport trunk allowed vlan 1,3,8,9"
+
+vlans1 = command1[command1.find('1')::]
+
+vlans2 = command2[command2.find('1')::]
+
+vlans1 = vlans1.split(',')
+
+vlans2 = vlans2.split(',')
+
+vlans_sum = vlans1 + vlans2
+
+vlans_sum.pop(1)
+
+vlans_sum.pop(2)
+
+vlans_sum.pop() 
+
+vlans_sum.pop()
+
+vlans_sum.pop() 
+
+vlans_sum.pop()
+
+result = vlans_sum
+
+print(result)
