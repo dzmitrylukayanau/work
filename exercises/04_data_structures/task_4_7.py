@@ -16,3 +16,15 @@
 """
 
 mac = "AAAA:BBBB:CCCC"
+
+mac_split = mac.split(':')
+
+mac_join = ''.join(mac_split)
+
+mac_dec = int("AAAABBBBCCCC", 16)
+
+mac_bin = (bin(mac_dec))
+
+mac_bin_fin = mac_bin[2::]
+
+print(mac_bin_fin)
