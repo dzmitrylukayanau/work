@@ -26,3 +26,16 @@
 """
 
 ip = "192.168.3.1"
+
+ipa = ip.split(".")
+
+print(f'''
+	{int(ipa[0]):<8} {int(ipa[1]):<8} {int(ipa[2]):<8} {int(ipa[3]):<8}
+	{int(ipa[0]):08b} {int(ipa[1]):08b} {int(ipa[2]):08b} {int(ipa[3]):08b}''')
+
+#ip_template = ''' 
+#	{:<8} {:<8} {:<8} {:<8} 
+#	{:08b} {:08b} {:08b} {:08b} 
+#	 '''
+#
+#print(ip_template.format(192, 168, 3, 1, 192, 168, 3,1)
