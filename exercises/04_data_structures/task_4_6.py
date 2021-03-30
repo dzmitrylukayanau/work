@@ -28,6 +28,14 @@ values[1] = values[1].strip('[]')
 
 d_keys = ['Prefix', 'AD/Metric', 'Next-Hop', 'Last update', 'Outbound Interface']
 
-ospf_info = dict(zip(d_keys, values))
+print(f''' 
+	{d_keys[0]:<22} {values[0]:<22} 
+	{d_keys[1]:<22} {values[1]:<22} 
+	{d_keys[2]:<22} {values[2]:<22} 
+	{d_keys[3]:<22} {values[3]:<22} 
+	{d_keys[4]:<22} {values[4]:<22} 
+	 ''')
 
-print(ospf_info)
+#ospf_info = dict(zip(d_keys, values))
+
+#print(ospf_info)
