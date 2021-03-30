@@ -31,20 +31,12 @@ vlans1 = vlans1.split(',')
 
 vlans2 = vlans2.split(',')
 
-vlans_sum = vlans1 + vlans2
+vlans1 = set(vlans1)
 
-vlans_sum.pop(1)
+vlans2 = set(vlans2)
 
-vlans_sum.pop(2)
+result = list(vlans1 & vlans2)
 
-vlans_sum.pop() 
-
-vlans_sum.pop()
-
-vlans_sum.pop() 
-
-vlans_sum.pop()
-
-result = vlans_sum
+result.sort()
 
 print(result)
