@@ -56,7 +56,7 @@ london_co = {
 
 
 key = input('Введите имя устройства: ')
-print(list(london_co[key].keys()))
-value = input('Введите имя параметра: ')
+choice = ','.join(list(london_co[key].keys()))
+value = input('Введите имя параметра ' + '(' + choice + ')' + ': ')
 
 print(london_co[key][value])
