@@ -41,3 +41,50 @@ bin_ip = "00001010000000010000000111000011"
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+ip = input('Ведите ip адрес и маску в формате ip/mask: ')
+
+ip_split = ip.split('.')
+ 
+ip_last = ip_split.pop(-1)
+
+ip_last = ip_last.split('/')
+
+ip_addr =  '.'.join(ip_split) + '.' + ip_last[0]
+
+ipa = ip_addr.split('.')
+
+mask = int(ip_last[1])
+
+mask0 = 32 - mask
+
+onezero_mask = '1' * mask + '0' * mask0
+
+first_oct = onezero_mask[0:8]
+sec_oct = onezero_mask[8:16]
+third_oct = onezero_mask[16:24]
+forth_oct = onezero_mask[24:]
+all_mask = first_oct + '.' + sec_oct + '.' + third_oct + '.' + forth_oct
+all_mask = all_mask.split('.')
+
+ip_bin = '{:08b}{:08b}{:08b}{:08b}'.format(int(ipa[0]), int(ipa[1]), int(ipa[2]), int(ipa[3]))
+ip_bin_netw = ip_bin[0:mask] + '0' * mask0
+ip_fio = ip_bin_netw[0:8]
+ip_so = ip_bin_netw[8:16]
+ip_to = ip_bin_netw[16:24]
+ip_fo = ip_bin_netw[24:]
+ip_bin_all = ip_fio + '.' + ip_so + '.' + ip_to + '.' + ip_fo
+ip_bin_all = ip_bin_all.split('.')
+
+print(f'''
+Network:
+{int(ip_bin_all[0], 2):<8} {int(ip_bin_all[1], 2):<8} {int(ip_bin_all[2], 2):<8} {int(ip_bin_all[3], 2):<8}
+{ip_fio} {ip_so} {ip_to} {ip_fo}''')
+
+print(f'''
+Mask:
+/{mask}
+{int(all_mask[0], 2):<8} {int(all_mask[1], 2):<8} {int(all_mask[2], 2):<8} {int(all_mask[3], 2):<8}
+{first_oct} {sec_oct} {third_oct} {forth_oct}
+''')
+
+
