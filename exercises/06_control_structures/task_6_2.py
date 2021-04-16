@@ -12,3 +12,17 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+ip = input('Введите ip адрес в формате x.x.x.x: ')
+octets = ip.split('.')
+
+if 0 < int(octets[0]) < 224:
+	print('unicast')
+elif 224 <= int(octets[0]) <= 239:
+	print('multicast')
+elif ip == '255.255.255.255':
+	print('local broadcast')
+elif ip == '0.0.0.0':
+	print('unassigned')
+else:
+	print('unused')
