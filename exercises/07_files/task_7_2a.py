@@ -17,3 +17,14 @@
 """
 
 ignore = ["duplex", "alias", "configuration"]
+
+with open('config_sw1.txt') as f:
+    for line in f:
+        if '!' in line:
+            continue
+        for command in ignore:
+            if command in line:
+                continue
+            else:
+                print(line.rstrip()) 
+
