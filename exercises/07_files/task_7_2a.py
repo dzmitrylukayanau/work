@@ -15,16 +15,21 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+from sys import argv
+
+file = argv[1]
 
 ignore = ["duplex", "alias", "configuration"]
 
-with open('config_sw1.txt') as f:
-    for line in f:
-        if '!' in line:
-            continue
-        for command in ignore:
-            if command in line:
-                continue
-            else:
-                print(line.rstrip()) 
-
+with open(file) as f: 
+    for line in f: 
+        if '!' in line: 
+            continue 
+        elif ignore[0] in line: 
+            continue 
+        elif ignore[1] in line: 
+            continue 
+        elif ignore[2] in line: 
+            continue 
+        else: 
+            print(line.rstrip()) 
