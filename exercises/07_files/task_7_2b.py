@@ -17,3 +17,25 @@
 """
 
 ignore = ["duplex", "alias", "configuration"]
+
+from sys import argv
+
+src_file = argv[1]
+
+dst_file = argv[2]
+
+ignore = ["duplex", "alias", "configuration"]
+
+with open(src_file) as f: 
+    for line in f: 
+        if '!' in line: 
+            continue 
+        elif ignore[0] in line: 
+            continue 
+        elif ignore[1] in line: 
+            continue 
+        elif ignore[2] in line: 
+            continue 
+        else: 
+            file = open('sw1_processed.txt', 'a') 
+            
