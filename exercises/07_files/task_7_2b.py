@@ -38,4 +38,6 @@ with open(src_file) as f:
             continue 
         else: 
             file = open('sw1_processed.txt', 'a') 
+            file.writelines(line)
+            file.close()
             
