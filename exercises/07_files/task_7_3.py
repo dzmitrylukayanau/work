@@ -20,3 +20,25 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+with open('CAM_table.txt') as f: 
+    for line in f: 
+        line = line.split() 
+        if '----' in line: 
+            continue 
+        elif '-------------------------------------------' in line: 
+            continue 
+        elif line and line[1][0].isdigit() and line[1][1].isalpha():   
+            vlan = line[0]  
+            mac = line[1]  
+            intf = line[3]  
+            print('{:10}{:20}{}'.format(vlan, mac, intf)) 
+        elif line and line[1][0].isalpha() and line[1][1].isdigit(): 
+            vlan = line[0] 
+            mac = line[1] 
+            intf = line[3]  
+            print('{:10}{:20}{}'.format(vlan, mac, intf)) 
+        elif line and line[1][0].isdigit() and line[1][1].isdigit(): 
+            vlan = line[0] 
+            mac = line[1] 
+            intf = line[3] 
+            print('{:10}{:20}{}'.format(vlan, mac, intf))
