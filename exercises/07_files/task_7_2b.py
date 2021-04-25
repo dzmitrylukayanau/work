@@ -37,7 +37,7 @@ with open(src_file) as f:
         elif ignore[2] in line: 
             continue 
         else: 
-            file = open('sw1_processed.txt', 'a') 
+            file = open(dst_file, 'a') 
             file.writelines(line)
             file.close()
             
