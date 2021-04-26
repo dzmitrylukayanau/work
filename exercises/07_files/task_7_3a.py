@@ -23,3 +23,47 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+result={}
+
+with open('CAM_table.txt') as f: 
+    for line in f: 
+        line = line.split() 
+        if '----' in line: 
+            continue 
+        elif '-------------------------------------------' in line: 
+            continue 
+        elif line and line[1][0].isdigit() and line[1][1].isalpha():   
+            vlan = line[0]  
+            mac = line[1]  
+            intf = line[3]
+            result[vlan]= {}
+            result[vlan]['mac_addr'] = mac
+            result[vlan]['interface'] = intf  
+#            print('{:10}{:20}{}'.format(vlan, mac, intf)) 
+        elif line and line[1][0].isalpha() and line[1][1].isdigit(): 
+            vlan = line[0] 
+            mac = line[1] 
+            intf = line[3]
+            result[vlan]= {}
+            result[vlan]['mac_addr'] = mac
+            result[vlan]['interface'] = intf   
+#            print('{:10}{:20}{}'.format(vlan, mac, intf)) 
+        elif line and line[1][0].isdigit() and line[1][1].isdigit(): 
+            vlan = line[0] 
+            mac = line[1] 
+            intf = line[3]
+            result[vlan]= {}
+            result[vlan]['mac_addr'] = mac
+            result[vlan]['interface'] = intf    
+#            print('{:10}{:20}{}'.format(vlan, mac, intf))
+
+
+new_keys = []
+for i in sorted(result):
+    new_keys.append(int(i))
+
+print(sorted(new_keys))
+print(result)
+
+#for k in sorted(new_keys):
+#    print('{:10}{:20}{}'.format(k, result[k]['mac_addr'], result[k]['interface']))
