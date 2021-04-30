@@ -17,3 +17,52 @@ Enter VLAN number: 10
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+result={}
+vlans = []
+macs = []
+interfaces = []
+
+v = int(input('Enter VLAN number: '))
+
+with open('CAM_table.txt') as f: 
+    for line in f: 
+        line = line.split() 
+        if '----' in line: 
+            continue 
+        elif '-------------------------------------------' in line: 
+            continue 
+        elif line and line[1][0].isdigit() and line[1][1].isalpha():   
+            vlan = line[0]  
+            mac = line[1]  
+            intf = line[3]
+            vlans.append(int(vlan))
+            macs.append(mac)
+            interfaces.append(intf)
+            result[intf]= {}
+            result[intf]['vlan'] = vlan
+            result[intf]['mac'] = mac  
+        elif line and line[1][0].isalpha() and line[1][1].isdigit(): 
+            vlan = line[0] 
+            mac = line[1] 
+            intf = line[3]
+            vlans.append(int(vlan))
+            macs.append(mac)
+            interfaces.append(intf)
+            result[intf]= {}
+            result[intf]['vlan'] = vlan
+            result[intf]['mac'] = mac  
+        elif line and line[1][0].isdigit() and line[1][1].isdigit(): 
+            vlan = line[0] 
+            mac = line[1] 
+            intf = line[3]
+            vlans.append(int(vlan))
+            macs.append(mac)
+            interfaces.append(intf)
+            result[intf]= {}
+            result[intf]['vlan'] = vlan
+            result[intf]['mac'] = mac
+
+for key in result:
+    if v == int(result[key]['vlan']):
+        print('{:<10}{:20}{}'.format(v, result[key]['mac'], key))
+
