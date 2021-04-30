@@ -24,6 +24,9 @@
 
 """
 result={}
+vlans = []
+macs = []
+interfaces = []
 
 with open('CAM_table.txt') as f: 
     for line in f: 
@@ -36,34 +39,43 @@ with open('CAM_table.txt') as f:
             vlan = line[0]  
             mac = line[1]  
             intf = line[3]
-            result[vlan]= {}
-            result[vlan]['mac_addr'] = mac
-            result[vlan]['interface'] = intf  
+            vlans.append(int(vlan))
+            macs.append(mac)
+            interfaces.append(intf)
+            result[intf]= {}
+            result[intf]['vlan'] = vlan
+            result[intf]['mac'] = mac  
 #            print('{:10}{:20}{}'.format(vlan, mac, intf)) 
         elif line and line[1][0].isalpha() and line[1][1].isdigit(): 
             vlan = line[0] 
             mac = line[1] 
             intf = line[3]
-            result[vlan]= {}
-            result[vlan]['mac_addr'] = mac
-            result[vlan]['interface'] = intf   
-#            print('{:10}{:20}{}'.format(vlan, mac, intf)) 
+            vlans.append(int(vlan))
+            macs.append(mac)
+            interfaces.append(intf)
+            result[intf]= {}
+            result[intf]['vlan'] = vlan
+            result[intf]['mac'] = mac  
         elif line and line[1][0].isdigit() and line[1][1].isdigit(): 
             vlan = line[0] 
             mac = line[1] 
             intf = line[3]
-            result[vlan]= {}
-            result[vlan]['mac_addr'] = mac
-            result[vlan]['interface'] = intf    
-#            print('{:10}{:20}{}'.format(vlan, mac, intf))
+            vlans.append(int(vlan))
+            macs.append(mac)
+            interfaces.append(intf)
+            result[intf]= {}
+            result[intf]['vlan'] = vlan
+            result[intf]['mac'] = mac  
 
+#print(sorted(vlans))
+#print(macs)
+#print(interfaces)
+#print(result)
 
-new_keys = []
-for i in sorted(result):
-    new_keys.append(int(i))
+vlans = sorted(list(set(vlans)))
 
-print(sorted(new_keys))
-print(result)
-
-#for k in sorted(new_keys):
-#    print('{:10}{:20}{}'.format(k, result[k]['mac_addr'], result[k]['interface']))
+for v in vlans:
+    for key in result: 
+        if v == int(result[key]['vlan']): 
+            print('{:<10}{:20}{}'.format(v, result[key]['mac'], key))
+    
