@@ -38,11 +38,9 @@ def generate_trunk_config(intf_vlan_mapping, trunk_template):
 
     Возвращает список всех портов в режиме access с конфигурацией на основе шаблона
     """
-    dic = {}
     final = {}
 
     for intf, vlan in intf_vlan_mapping.items():
-        dic[f'interface {intf}'] = []
         result = []
         for command in trunk_template:
              if command.endswith('allowed vlan'):
@@ -50,8 +48,7 @@ def generate_trunk_config(intf_vlan_mapping, trunk_template):
                 result.append('{} {}'.format(command, vl_list))
              else:
                 result.append('{}'.format(command))
-        for interf in dic.keys():
-            final[interf] = result
+        final[intf] = result
 
     return(final)
 
