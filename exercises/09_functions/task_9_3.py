@@ -23,3 +23,27 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+def get_int_vlan_map(config_filename):
+    """
+    config_filename - имя конфигурационного файла
+
+    Возвращает кортеж из двух словарей
+    * словарь портов в режиме access
+    * словарь портов в режиме trunk
+    """
+
+    access = {}
+
+    with open(config_filename) as f:
+        for line in f:
+            if 'interface' in line:
+                interface = line.split()[1]
+            elif 'access vlan' in line:
+                vlan = line.split()[-1]
+                access[interface] = vlan
+    print(access)
+
+final = get_int_vlan_map('config_sw1.txt')
+print(final)
+
