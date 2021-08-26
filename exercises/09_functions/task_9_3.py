@@ -34,6 +34,7 @@ def get_int_vlan_map(config_filename):
     """
 
     access = {}
+    trunk = {}
 
     with open(config_filename) as f:
         for line in f:
@@ -41,9 +42,13 @@ def get_int_vlan_map(config_filename):
                 interface = line.split()[1]
             elif 'access vlan' in line:
                 vlan = line.split()[-1]
-                access[interface] = vlan
-    print(access)
+                access[interface] = int(vlan)
+            elif 'allowed vlan' in line:
+                vlans = line.split()[-1].split(',')
+                trunk[interface] = vlans 
+    return tuple(access, trunk)
 
 final = get_int_vlan_map('config_sw1.txt')
 print(final)
+
 
